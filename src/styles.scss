@@ -57,4 +57,20 @@ body{
 .container{
     flex:1;
     background-color: red;
+    display: grid;
+
+    grid-template-columns: 1fr 10fr;
+    grid-template-rows: 1fr 1fr 10fr;
+
+    .nav-bar{
+        background-color: black;
+        grid-row: 1/4;
+    }
+    .header{
+        background-color: purple;
+    }
+    .content{
+        grid-row: -3/-1;
+        background-color: rebeccapurple;
+    }
 }
