@@ -1,9 +1,16 @@
-import './styles.scss'
+import './styles.scss';
 
-const cB = document.querySelector(".open");
-cB.addEventListener("click", () =>{
-    const nB = document.querySelector(".nav-bar");
-    
-    nB.classList.toggle("close");
+const navBar = document.querySelector(".nav-bar");
 
+const openBtn = document.querySelector(".op");
+
+openBtn.addEventListener("click", () =>{
+    navBar.style.display = "flex";
+    openBtn.classList.remove("open");
+});
+
+const hideBtn = document.querySelector(".icon").addEventListener("click", () =>{
+    navBar.style.display = "none";
+    const openBtn = document.querySelector(".op")
+    openBtn.classList.toggle("open");
 })
