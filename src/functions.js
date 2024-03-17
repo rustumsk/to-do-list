@@ -1,3 +1,6 @@
+import { Project } from "./project";
+import { clicked } from "./index";
+
 export const show = (span) =>{
     const contentHead = document.querySelector(".content-head");
     contentHead.textContent = span.textContent;
@@ -33,7 +36,12 @@ export const addProject = () => {
     addButton.textContent = "Add";
     addButton.addEventListener("click", (event) =>{
         event.preventDefault();
-        // input.textContent == ""? alert("Gay")
+        if(input.value == ""){
+            alert("Please put title!");
+        }
+        else{
+            putProj(input.value,add,cont);
+        }
     });
 
     const cancelButton = document.createElement("button");
@@ -59,3 +67,63 @@ export const addProject = () => {
 
     projects.insertChildAtIndex(cont,1);
 }
+
+const putProj = (value,add,cont) =>{
+        const proj = new Project(value);
+
+        const contain = document.querySelector(".p-container");
+
+        const ps = document.createElement("div");
+        ps.classList.add("ps");
+        contain.appendChild(ps);
+
+        const pName = document.createElement("span");
+        pName.classList.add("p-name");
+        pName.textContent = value;
+        pName.addEventListener("click", () =>{
+            const t = document.querySelector(".t");
+            clicked(pName,pName);
+            show(pName);
+        })
+        ps.appendChild(pName);
+
+        const piCont = document.createElement("div");
+        piCont.classList.add("pi-cont");
+        piCont.addEventListener("click", () =>{
+            showBtn(ps,proj,pName);
+        });
+        ps.appendChild(piCont);
+
+        const pIcon = document.createElement("span");
+        pIcon.classList.add("p-icon");
+        piCont.appendChild(pIcon);
+        cont.parentNode.removeChild(cont);
+        add.disabled = false;
+}
+export const showBtn = (ps,proj,pName) =>{
+    const opDiv = document.createElement("div");
+    opDiv.classList.add("try");
+    ps.appendChild(opDiv);
+
+    const rmvButton = document.createElement("button");
+    rmvButton.classList.add("rmv");
+    rmvButton.textContent = "Remove";
+    rmvButton.addEventListener("click", () =>{
+        const parent = rmvButton.parentNode;
+        const grandParent = parent.parentNode;
+        grandParent.remove();
+    })
+    opDiv.appendChild(rmvButton);
+
+    const rnmButton = document.createElement("button");
+    rnmButton.classList.add("rnm");
+    rnmButton.textContent = "Rename";
+    rnmButton.addEventListener("click", () =>{
+        const n = prompt("Enter Name!");
+        proj.Title = n;
+        pName.textContent = proj.Title;
+    })
+    opDiv.appendChild(rnmButton);
+}
+
+export const arr = [];

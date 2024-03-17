@@ -1,5 +1,6 @@
 import './styles.scss';
-import { show, addProject as add} from './functions';
+import { show, addProject as add, showBtn} from './functions';
+import { Project } from './project';
 const navBar = document.querySelector(".nav-bar");
 const openBtn = document.querySelector(".op");
 
@@ -18,7 +19,7 @@ const addProject = document.querySelector(".add-project").addEventListener("clic
     add();
 });
 
-function clicked(object,span){
+export function clicked(object,span){
     today.classList.remove("clicked");
     allTask.classList.remove("clicked");
     week.classList.remove("clicked");

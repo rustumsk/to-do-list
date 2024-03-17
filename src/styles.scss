@@ -251,6 +251,25 @@ body{
             place-content: center;
             font-size: 1.5rem;
             display: flex;
+            .try{
+              flex: .5;
+              .rmv{
+                border: none;
+                border-radius: 8px;
+                background-color: lightcoral;
+                &:hover{
+                  background-color: gray;
+                }
+              }
+              .rnm{
+                border: none;
+                border-radius: 8px;
+                background-color: lightgreen;
+                &:hover{
+                  background-color: gray;
+                }
+              }
+            }
             .p-name{
               flex: 1;
               max-height: 50%;
@@ -360,6 +379,10 @@ body{
         &:active{
           border: none;
         }
+      }
+      .clicked{
+        background-color: lightgreen;
+        border-left: solid 8px lightcoral;
       }
     }
     .p-button{

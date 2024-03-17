@@ -1,6 +1,12 @@
 export class Project{
-    Project(title,toDo){
+    constructor(title){
         this.title = title;
-        this.toDo = toDo;
+    }
+    
+    get Title(){
+        return this.title;
+    }
+    set Title(tit){
+        this.title = tit;
     }
 }
