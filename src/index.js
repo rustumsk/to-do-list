@@ -1,6 +1,6 @@
 import './styles.scss';
 import { show, addProject as add, showBtn} from './functions';
-import { Project } from './project';
+import { Project } from './Project';
 const navBar = document.querySelector(".nav-bar");
 const openBtn = document.querySelector(".op");
 
@@ -20,13 +20,26 @@ const addProject = document.querySelector(".add-project").addEventListener("clic
 });
 
 export function clicked(object,span){
-    today.classList.remove("clicked");
-    allTask.classList.remove("clicked");
-    week.classList.remove("clicked");
+    const parentNode = document.querySelector(".p-container")
+    removeClicked(parentNode);
     object.classList.add("clicked");
     show(span);
 }
+export function removeClicked(parentNode){
+    today.classList.remove("clicked");
+    allTask.classList.remove("clicked");
+    week.classList.remove("clicked");
 
+    for (let i = 0; i < parentNode.childNodes.length; i++) {
+        const childNode = parentNode.childNodes[i];
+        // Do something with the child node
+        if (childNode.nodeType === 1) { // 1 represents an element node
+            // Do something with the element node
+            const grandChildren = childNode.childNodes[0];
+            grandChildren.classList.remove("clicked");
+        }
+    }
+}
 const allTask = document.querySelector(".task");
 const t = document.querySelector(".t");
 allTask.addEventListener("click", () =>{
@@ -44,5 +57,9 @@ week.addEventListener("click", () =>{
     const wt = document.querySelector(".w-t");
     clicked(week,wt);
 });
+
+const aButton = document.querySelector(".t-icon").addEventListener("click", () =>{
+    alert("Hi");
+})
 
 clicked(allTask,t);

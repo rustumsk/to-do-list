@@ -9,4 +9,7 @@ export class Project{
     set Title(tit){
         this.title = tit;
     }
+    get ToDo(){
+        return toDo = [];
+    }
 }

@@ -41,8 +41,67 @@
                 <div class="op"></div>
             </div>
             <div class="main-content">
+                <dialog class="dialog" open>
+                    <form method="dialog" class="d-pop">
+                        <div class="m-title">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" id="title">
+                        </div>
+                        <div class="m-description">
+                            <label for="desc">Description</label>
+                            <textarea name="desc" id="desc" cols="40" rows="4"></textarea>
+                        </div>
+                        <div class="m-prio">
+                            <div>Priority</div>
+                            <div class="r-buttons">
+                                <label for="f-b">1</label>
+                                <input type="radio" name="rad" id="f-b">
+                                <label for="s-b">2</label>
+                                <input type="radio" name="rad" id="s-b">
+                                <label for="t-b">3</label>
+                                <input type="radio" name="rad" id="t-b">
+                            </div>
+                        </div>
+                        <div class="m-date">
+                            <input type="date">
+                        </div>
+                        <div class="m-buttons">
+                            <button></button>
+                            <button></button>
+                        </div>
+                    </form>
+                  </dialog>
                 <header class="content-head"></header>
-                <div class="lists"></div>
+                <div class="lists">
+                    <div class="tod add-to">
+                        <div class="ad">
+                            <button class="t-icon"></button>
+                            <div class="t-m">Add To-Do</div>
+                        </div>
+                    </div>
+                    <div class="tod one">
+                        <div class="t-b"><input type="checkbox"></div>
+                        <div class="t-t">
+                            <div class="t-text">Eat Something Good</div>
+                        </div>
+                        <div class="d-t">
+                            <div class="t-date">12/24/28</div>
+                        </div>
+                    </div>
+                    <div class="tod two">
+                        <div class="t-b"><input type="checkbox" class="checkbox"></div>
+                        <div class="t-t">
+                            <div class="t-text">Eat Something Good</div>
+                        </div>
+                        <div class="d-t">
+                            <div class="t-date">12/24/23</div>
+                        </div>
+                    </div>
+                    <div class="tod three">
+                        <div></div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>

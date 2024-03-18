@@ -40,11 +40,6 @@
     border-collapse: collapse;
     border-spacing: 0;
   }
-  
-  input{
-    -webkit-appearance: none;
-    border-radius: 0;
-  }
 //end of reset
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
 
@@ -277,6 +272,10 @@ body{
                 background-color: $main-color;
               }
             }
+            .clicked{
+              background-color: lightgreen;
+              border-left: solid 8px lightcoral;
+            }
             .pi-cont{
               flex: .1;
               display: grid;
@@ -290,6 +289,10 @@ body{
               &:hover{
                 border: $secondary-color solid 5px;
               }
+            }
+            .Trial{
+              border-top: solid 10px $secondary-color;
+              background-color: gray;
             }
           }
         }
@@ -320,7 +323,80 @@ body{
         padding: 2rem;
         padding-bottom: 0;
         display: flex;
+        position: relative;
         flex-direction: column;
+        dialog{
+          position: absolute;
+          background-color: transparent;
+          width: 30%;
+          height: 50%;
+          align-self: center;
+          display: flex;
+          border: none;
+          .d-pop{
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: $secondary-color;
+            border: solid 1px;
+            font-family: "Inconsolata", monospace;
+            font-weight: 100%;
+            gap: 1rem;
+            .m-title{
+              flex: 1;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              place-content: center;
+              align-items: center;
+              gap: .5rem;
+              label{
+                display: grid;
+                place-content: center;
+              }
+              input{
+                width: 50%;
+                max-height: 3rem;
+                border: none;
+                border-radius: 5px;
+                border-bottom: solid 4px red;
+                outline: none;
+                font-size: 1rem;
+              }
+            }
+            .m-description{
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: .5rem;
+              label{
+                display: grid;
+                place-content: center;
+              }
+              textarea{
+                width: 70%;
+              }
+            }
+            .m-prio{
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              div{
+                flex: 1;
+                display: flex;
+                justify-content: center;
+              }
+            }
+            .m-date{
+              flex: 1;
+            }
+            .m-buttons{
+              flex: 1;
+            }
+          }
+        }
         .content-head{
           background-color: $secondary-color;
           font-weight: bold;
@@ -335,6 +411,91 @@ body{
         }
         .lists{
           flex: 3;
+          display: flex;
+          padding: 2rem;
+          flex-direction: column;
+          padding-bottom: 0px;
+          overflow: scroll;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          gap: 1rem;
+
+          .tod{
+            min-height: 10%;
+            background-color: $tertiary-color;
+            display: flex;
+            .t-b{
+              flex: .3;
+              display: grid;
+              place-content: center;
+              input{
+                height: 1rem;
+                width: 1rem;
+                background-color: white;
+                border: solid 2px white;
+                border-radius: 5px;
+              }
+            }
+            .t-t{
+              flex: 4;
+              display: grid;
+              place-content: center;
+              .t-text{
+                max-height: 50%;
+                font-size: 2.5rem;
+                font-family: "Inconsolata";
+              }
+            }
+            .d-t{
+              flex: 2;
+              display: grid;
+              place-content: center;
+              .t-date{
+                font-size: 2rem;
+                color: red;
+                font-weight: bold;
+              }
+            }
+          }
+          .add-to{
+            place-content: center;
+            align-items: center;
+            background-color: $main-color;
+            .ad{
+              width: 20%;
+              height: 65%;
+              display: flex;
+              .t-icon{
+                flex: 1;
+                background-image: url(./icons/plus.svg);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-color: $main-color;
+                border: none;
+                &:hover{
+                  border: solid 2px $main-color;
+                }
+              }
+              .t-m{
+                flex: 5;
+                display: grid;
+                place-content: center;
+                justify-content: start;
+                font-size: 1.5rem;
+                font-weight: bold;
+              }
+            }
+          }
+          .one{
+            background-color: lightcoral;
+          }
+          .two{
+            background-color: lightblue;
+          }
+          .three{
+            background-color: lightgreen;
+          }
         }
       }
     }

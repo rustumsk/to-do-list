@@ -1,4 +1,4 @@
-import { Project } from "./project";
+import { Project } from "./Project";
 import { clicked } from "./index";
 
 export const show = (span) =>{
@@ -82,7 +82,7 @@ const putProj = (value,add,cont) =>{
         pName.textContent = value;
         pName.addEventListener("click", () =>{
             const t = document.querySelector(".t");
-            clicked(pName,pName);
+            clicked(pName,pName,contain);
             show(pName);
         })
         ps.appendChild(pName);
@@ -90,7 +90,16 @@ const putProj = (value,add,cont) =>{
         const piCont = document.createElement("div");
         piCont.classList.add("pi-cont");
         piCont.addEventListener("click", () =>{
-            showBtn(ps,proj,pName);
+            if (piCont.classList.contains("Trial")){
+                console.log("Hi");
+                const cont = document.querySelector(".try");
+                piCont.classList.remove("Trial");
+                cont.remove();
+            }
+            else{
+                showBtn(ps,proj,pName);
+                piCont.classList.add("Trial");
+            }
         });
         ps.appendChild(piCont);
 
@@ -109,6 +118,9 @@ export const showBtn = (ps,proj,pName) =>{
     rmvButton.classList.add("rmv");
     rmvButton.textContent = "Remove";
     rmvButton.addEventListener("click", () =>{
+        const allTask = document.querySelector(".task");
+        const t = document.querySelector(".t");
+        clicked(allTask,t);
         const parent = rmvButton.parentNode;
         const grandParent = parent.parentNode;
         grandParent.remove();
