@@ -81,7 +81,17 @@ $tertiary-color: #998FC7;
   background-repeat: no-repeat;
   background-size: 90%;
 }
-
+@mixin mBtn ($color){
+  width: 15%;
+  height: 50%;
+  border-radius: 12px;
+  background-color: $color;
+  color: $main-color;
+  border: none;
+  &:hover{
+    border: solid 2px black;
+  }
+}
 body{
     height: 100dvh;
     //background-color: blue;
@@ -327,11 +337,11 @@ body{
         flex-direction: column;
         dialog{
           position: absolute;
-          background-color: transparent;
-          width: 30%;
-          height: 50%;
+          background-color: black;
+          width: 25%;
+          height: 70%;
           align-self: center;
-          display: flex;
+          //display: flex;
           border: none;
           .d-pop{
             flex: 1;
@@ -339,10 +349,12 @@ body{
             display: flex;
             flex-direction: column;
             background-color: $secondary-color;
-            border: solid 1px;
             font-family: "Inconsolata", monospace;
             font-weight: 100%;
             gap: 1rem;
+            height: 100%;
+            border-radius: 1rem;
+            border: solid 4px $tertiary-color;
             .m-title{
               flex: 1;
               width: 100%;
@@ -354,6 +366,7 @@ body{
               label{
                 display: grid;
                 place-content: center;
+                font-size: 2rem;
               }
               input{
                 width: 50%;
@@ -373,6 +386,7 @@ body{
               gap: .5rem;
               label{
                 display: grid;
+                font-size: 2rem;
                 place-content: center;
               }
               textarea{
@@ -387,13 +401,56 @@ body{
                 flex: 1;
                 display: flex;
                 justify-content: center;
+                font-size: 2rem;
+              }
+              .r-buttons{
+                display: flex;
+                justify-content: space-around;
+                button{
+                  width: 30%;
+                  border: none;
+                  border-radius: 12px;
+                  &:hover{
+                    border: solid 4px $secondary-color;
+                  }
+                }
+                .l{
+                  background-color: lightgreen;
+                }
+                .m{
+                  background-color: lightblue;
+                }
+                .h{
+                  background-color: lightcoral;
+                }
               }
             }
             .m-date{
-              flex: 1;
+              flex: .5;
+              display: grid;
+              place-content: end;
+              justify-content: center;
+              .date-m{
+                border: none;
+                outline: none;
+                width: 15rem;
+                height: 2.5rem;
+                border-radius: 10px;
+                font-size: 1.5rem;
+              }
             }
             .m-buttons{
-              flex: 1;
+              flex: .5;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 20%;
+              .m-add{
+                @include mBtn(green);
+              }
+              .m-cancel{
+                @include mBtn(red);
+              }
             }
           }
         }

@@ -62,4 +62,14 @@ const aButton = document.querySelector(".t-icon").addEventListener("click", () =
     alert("Hi");
 })
 
+const dialog = document.querySelector(".dialog");
+
+const addTodo = document.querySelector(".t-icon").addEventListener("click", () =>{
+    dialog.showModal();
+})
+const cB = document.querySelector(".m-cancel");
+cB.addEventListener("click", () => {
+    dialog.close();
+});
+
 clicked(allTask,t);
