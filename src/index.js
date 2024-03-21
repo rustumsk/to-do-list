@@ -1,9 +1,11 @@
 import './styles.scss';
-import { show, addProject as add, showBtn} from './functions';
+import { show, addProject as add, showBtn, populateStyle, logger} from './functions';
 import { Project } from './Project';
+import { ToDo } from './ToDo';
 const navBar = document.querySelector(".nav-bar");
 const openBtn = document.querySelector(".op");
 
+populateStyle();
 openBtn.addEventListener("click", () =>{
     navBar.style.display = "flex";
     openBtn.classList.remove("open");
@@ -52,12 +54,24 @@ today.addEventListener("click", () =>{
     clicked(today,dt);
 });
 
+const testProj = new Project("Try");
+const arr = testProj.ToDo;
+arr.push(new ToDo("Eat Something", "Description", "3", "date"));
+arr.push(new ToDo("Eat Something", "432", "2", "date"));
+console.log(arr[1].Description);
+// const local1 = window.localStorage;
+// const sample = [{Name:"Hi", Age:"10"},{Name:"Hi", Age:"10"},{Name:"Hi", Age:"10"}];
+// local1.setItem("To-dos", JSON.stringify(sample));
+// console.log(local1);
+// const reArray = local1.getItem("To-dos");
+// const reString = JSON.parse(reArray);
+// console.log(reString);
+
 const week = document.querySelector(".w-task");
 week.addEventListener("click", () =>{
     const wt = document.querySelector(".w-t");
     clicked(week,wt);
 });
-
 const aButton = document.querySelector(".t-icon").addEventListener("click", () =>{
     alert("Hi");
 })
@@ -69,6 +83,11 @@ const addTodo = document.querySelector(".t-icon").addEventListener("click", () =
 })
 const cB = document.querySelector(".m-cancel");
 cB.addEventListener("click", () => {
+    dialog.close();
+});
+
+const aB = document.querySelector(".m-add");
+aB.addEventListener("click", () => {
     dialog.close();
 });
 

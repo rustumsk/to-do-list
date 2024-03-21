@@ -1,10 +1,13 @@
 import { Project } from "./Project";
 import { clicked } from "./index";
 
+const projArr = [];
+
 export const show = (span) =>{
     const contentHead = document.querySelector(".content-head");
     contentHead.textContent = span.textContent;
 }
+console.log(window.loca)
 export const addProject = () => {
     const add = document.querySelector(".add-project");
     add.disabled = true;
@@ -16,7 +19,7 @@ export const addProject = () => {
     const form = document.createElement("form");
     form.classList.add("pop");
     cont.appendChild(form);
-
+    
     const pCont = document.createElement("div");
     pCont.classList.add("p-cont");
     form.appendChild(pCont);
@@ -41,6 +44,8 @@ export const addProject = () => {
         }
         else{
             putProj(input.value,add,cont);
+            cont.parentNode.removeChild(cont);
+            add.disabled = false;
         }
     });
 
@@ -68,9 +73,12 @@ export const addProject = () => {
     projects.insertChildAtIndex(cont,1);
 }
 
-const putProj = (value,add,cont) =>{
-        const proj = new Project(value);
+const putProj = (value,check = 0) =>{
+        const proj = new Project(value)
+        projArr.push(proj);
 
+        localStorage.setItem("ProjectArray", JSON.stringify(projArr));
+        
         const contain = document.querySelector(".p-container");
 
         const ps = document.createElement("div");
@@ -79,7 +87,7 @@ const putProj = (value,add,cont) =>{
 
         const pName = document.createElement("span");
         pName.classList.add("p-name");
-        pName.textContent = value;
+        pName.textContent = proj.Title;
         pName.addEventListener("click", () =>{
             const t = document.querySelector(".t");
             clicked(pName,pName,contain);
@@ -106,8 +114,6 @@ const putProj = (value,add,cont) =>{
         const pIcon = document.createElement("span");
         pIcon.classList.add("p-icon");
         piCont.appendChild(pIcon);
-        cont.parentNode.removeChild(cont);
-        add.disabled = false;
 }
 export const showBtn = (ps,proj,pName) =>{
     const opDiv = document.createElement("div");
@@ -123,6 +129,7 @@ export const showBtn = (ps,proj,pName) =>{
         clicked(allTask,t);
         const parent = rmvButton.parentNode;
         const grandParent = parent.parentNode;
+        deleteProj(grandParent.childNodes[0].textContent);
         grandParent.remove();
     })
     opDiv.appendChild(rmvButton);
@@ -133,9 +140,36 @@ export const showBtn = (ps,proj,pName) =>{
     rnmButton.addEventListener("click", () =>{
         const n = prompt("Enter Name!");
         proj.Title = n;
+        renameProj(pName.textContent, n);
         pName.textContent = proj.Title;
     })
     opDiv.appendChild(rnmButton);
 }
+const deleteProj = (projTitle) =>{
+    const tempArr = JSON.parse(window.localStorage.getItem("ProjectArray"));
+    window.localStorage.setItem("ProjectArray",JSON.stringify(tempArr.filter(object => projTitle !== object.title)));
+}
+const renameProj = (prevName, newName) => {
+    const tempArr = JSON.parse(window.localStorage.getItem("ProjectArray"));
+    const updatedArray = tempArr.map(object => changeName(object, prevName, newName));
+    window.localStorage.setItem("ProjectArray", JSON.stringify(updatedArray));
+}
 
-export const arr = [];
+function changeName(object, prevName, newName) {
+    if (object.title === prevName) {
+        return { ...object, title: newName }; // Return a new object with the updated title
+    }
+    return object; // Return the original object if it doesn't match the criteria
+}
+export const populateStyle = () => {
+    const projArray = window.localStorage.getItem("ProjectArray");
+    if (projArray){
+        const arr = JSON.parse(projArray);
+        for (let i = 0; i < arr.length; i++){
+            putProj(arr[i].title, 1);
+        }
+    }
+    else{
+        console.log("False");
+    }
+}

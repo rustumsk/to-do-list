@@ -1,4 +1,5 @@
 export class Project{
+    arr = [];
     constructor(title){
         this.title = title;
     }
@@ -10,6 +11,6 @@ export class Project{
         this.title = tit;
     }
     get ToDo(){
-        return toDo = [];
+        return this.arr;
     }
 }
