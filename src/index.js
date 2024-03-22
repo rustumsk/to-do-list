@@ -59,13 +59,6 @@ const arr = testProj.ToDo;
 arr.push(new ToDo("Eat Something", "Description", "3", "date"));
 arr.push(new ToDo("Eat Something", "432", "2", "date"));
 console.log(arr[1].Description);
-// const local1 = window.localStorage;
-// const sample = [{Name:"Hi", Age:"10"},{Name:"Hi", Age:"10"},{Name:"Hi", Age:"10"}];
-// local1.setItem("To-dos", JSON.stringify(sample));
-// console.log(local1);
-// const reArray = local1.getItem("To-dos");
-// const reString = JSON.parse(reArray);
-// console.log(reString);
 
 const week = document.querySelector(".w-task");
 week.addEventListener("click", () =>{
@@ -90,5 +83,33 @@ const aB = document.querySelector(".m-add");
 aB.addEventListener("click", () => {
     dialog.close();
 });
+
+const lowButton = document.querySelector(".l");
+const medButton = document.querySelector(".m");
+const highButton = document.querySelector(".h");
+
+lowButton.addEventListener("click", (event) =>{
+    event.preventDefault();
+    console.log("hi");
+    lowButton.classList.add("c-clicked");
+    highButton.classList.remove("c-clicked");
+    medButton.classList.remove("c-clicked");
+})
+
+medButton.addEventListener("click", (event) =>{
+    event.preventDefault();
+    console.log("hi");
+    medButton.classList.add("c-clicked");
+    highButton.classList.remove("c-clicked");
+    lowButton.classList.remove("c-clicked");
+})
+
+highButton.addEventListener("click", (event) =>{
+    event.preventDefault();
+    console.log("hi");
+    highButton.classList.add("c-clicked");
+    medButton.classList.remove("c-clicked");
+    lowButton.classList.remove("c-clicked");
+})
 
 clicked(allTask,t);
