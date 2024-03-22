@@ -373,7 +373,6 @@ body{
                 max-height: 3rem;
                 border: none;
                 border-radius: 5px;
-                border-bottom: solid 4px red;
                 outline: none;
                 font-size: 1rem;
               }
@@ -391,6 +390,7 @@ body{
               }
               textarea{
                 width: 70%;
+                font-size: 1rem;
               }
             }
             .m-prio{

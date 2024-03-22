@@ -1,7 +1,11 @@
 import { Project } from "./Project";
-import { clicked } from "./index";
+import { clicked , removeList} from "./index";
 
 const projArr = [];
+const allTask = [];
+const weekTask = [];
+const todayTask = [];
+
 
 export const show = (span) =>{
     const contentHead = document.querySelector(".content-head");
@@ -72,6 +76,33 @@ export const addProject = () => {
 
     projects.insertChildAtIndex(cont,1);
 }
+export const toButton = () =>{
+    const list = document.querySelector(".lists");
+
+    const tod = document.createElement("div");
+    tod.classList.add("tod");
+    tod.classList.add("add-to");
+    list.appendChild(tod);
+
+    const ad = document.createElement("div");
+    ad.classList.add("ad");
+    tod.appendChild(ad);
+
+    const dialog = document.querySelector(".dialog");
+    const tIcon = document.createElement("button");
+    
+    tIcon.addEventListener("click", () =>{
+        dialog.showModal();
+    });
+
+    tIcon.classList.add("t-icon");
+    ad.appendChild(tIcon);
+
+    const tm = document.createElement("div");
+    tm.classList.add("t-m");
+    tm.textContent = "Add To-Do";
+    ad.appendChild(tm);
+}
 
 const putProj = (value,check = 0) =>{
         const proj = new Project(value)
@@ -89,6 +120,8 @@ const putProj = (value,check = 0) =>{
         pName.classList.add("p-name");
         pName.textContent = proj.Title;
         pName.addEventListener("click", () =>{
+            removeList();
+            toButton();
             const t = document.querySelector(".t");
             clicked(pName,pName,contain);
             show(pName);
