@@ -1,7 +1,7 @@
 import { Project } from "./Project";
-import { clicked , removeList} from "./index";
+import { clicked , removeList, makeTodo} from "./index";
 
-const projArr = [];
+export const projArr = [];
 const allTask = [];
 const weekTask = [];
 const todayTask = [];
@@ -125,6 +125,16 @@ const putProj = (value,check = 0) =>{
             const t = document.querySelector(".t");
             clicked(pName,pName,contain);
             show(pName);
+            const contentHead = document.querySelector(".content-head");
+            const projects = JSON.parse(localStorage.getItem("ProjectArray"));
+            const pro = projects.filter(project => project.title == contentHead.textContent);
+            const project = pro[0];
+            const pArr = project.arr;
+            if (pArr.length > 0){
+                pArr.forEach((Arr) =>{
+                    makeTodo(Arr.priority,Arr.task,Arr.date);
+                })
+            }
         })
         ps.appendChild(pName);
 
